@@ -12,12 +12,12 @@ dotenv.config();
 const bot = new Telegraf(process.env.token);
 const app = express();
 
-// app.use(
-//     await bot.createWebhook({
-//         domain: process.env.domain,
-//         drop_pending_updates: true,
-//     })
-// );
+app.use(
+    await bot.createWebhook({
+        domain: process.env.domain,
+        drop_pending_updates: true,
+    })
+);
 
 app.get("/", (req, res) => {
     res.send("Bot started");
@@ -237,6 +237,6 @@ app.listen(process.env.PORT || 3000, () => {
     console.log("Ready");
 });
 
-bot.launch(() => {
-    console.log("Ready to get to the moon !!");
-});
+// bot.launch(() => {
+//     console.log("Ready to get to the moon !!");
+// });
