@@ -17,6 +17,10 @@ app.use(
     })
 );
 
+app.get("/", (req, res) => {
+    res.send("Bot started");
+});
+
 const shouldUpdate = (currentTime, lastTime) => {
     const differenceInMilliseconds = currentTime - lastTime;
     const differenceInSeconds = differenceInMilliseconds / 1000;
@@ -121,6 +125,6 @@ bot.catch(async (err, ctx) => {
     await ctx.reply("Some shitting thing occured", err);
 });
 
-bot.launch(() => {
-    console.log("Bot started");
+app.listen(process.env.PORT || 3000, () => {
+    console.log("Ready");
 });
