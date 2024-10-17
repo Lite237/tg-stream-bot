@@ -11,7 +11,7 @@ const bot = new Telegraf(process.env.token);
 const app = express();
 
 app.use(
-    bot.createWebhook({
+    await bot.createWebhook({
         domain: process.env.domain,
         drop_pending_updates: true,
     })
