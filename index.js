@@ -81,9 +81,9 @@ bot.command("stream", async (ctx) => {
     const msg = await ctx.reply("Starting stream...");
 
     let lastUpdateTime = new Date();
-
+    //"-stream_loop -1",
     ffmpeg("./stream.mp4")
-        .inputOptions(["-stream_loop -1", "-re"])
+        .inputOptions(["-re"])
         .videoCodec("libx264")
         .videoBitrate(1500)
         .size("640x480")
