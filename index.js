@@ -83,9 +83,18 @@ bot.command("stream", async (ctx) => {
     let lastUpdateTime = new Date();
 
     ffmpeg("./stream.mp4")
-        .inputOptions(["-re"])
+        .inputOptions(["-stream_loop -1", "-re"])
         .videoCodec("libx264")
+        .videoBitrate(2500)
+        .addOption("-preset", "veryfast")
+        .addOption("-maxrate", "2500k")
+        .addOption("-bufsize", "5000k")
+        .addOption("-pix_fmt", "yuv420p")
+        .addOption("-g", "50")
         .audioCodec("aac")
+        .audioBitrate("128k")
+        .audioChannels(2)
+        .audioFrequency(44100)
         .format("flv")
         .on("error", function (err) {
             ctx.reply("An error occurred: " + err.message);
